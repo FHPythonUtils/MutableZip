@@ -1,3 +1,5 @@
+#!/usr/bin/env python3.9
+
 """ tests """
 from zipfile import ZipFile, ZIP_DEFLATED
 from mutablezip import MutableZipFile

@@ -1,8 +1,11 @@
 """ mutable zip file """
-
+from __future__ import annotations
+from types import TracebackType
+from typing import Optional, Union, IO, Type
 from zipfile import ZipFile, ZIP_STORED, ZipInfo
 from shutil import move, rmtree, copyfileobj
 from tempfile import mkdtemp, TemporaryFile
+from os import PathLike
 from os.path import join
 
 
@@ -16,16 +19,23 @@ class MutableZipFile(ZipFile):
 	class DeleteMarker:
 		""" delete marker """
 
-	def __init__(self, file, mode="r", compression=ZIP_STORED, allowZip64=False):
-		super(MutableZipFile, self).__init__(file, mode=mode,
+	def __init__(self, file: Union[str, IO[bytes]], mode: str="r",
+	compression: int=ZIP_STORED, allowZip64: bool=False):
+		super().__init__(file, mode=mode,
 		compression=compression, allowZip64=allowZip64)
 		# track file to override in zip
 		self._replace = {}
 		# Whether the with statement was called
 		self._allowUpdates = False
+		# Let's set some properties here - though there 'shouldn't' be a need
+		# for this
+		self.file = file
+		self.mode = mode
+		self.compression = compression
+		self.allowZip64 = allowZip64
 
-	def writestr(self, zinfo_or_arcname, data, compress_type=None,
-	compresslevel=None):
+	def writestr(self, zinfo_or_arcname: Union[str, ZipInfo], data: Union[bytes, str],
+	compress_type: Optional[int]=None, compresslevel: Optional[int]=None):
 		if isinstance(zinfo_or_arcname, ZipInfo):
 			name = zinfo_or_arcname.filename
 		else:
@@ -35,13 +45,18 @@ class MutableZipFile(ZipFile):
 		# we allow this only if the with statement is used
 		if self._allowUpdates and name in self.namelist():
 			tempFile = self._replace[name] = self._replace.get(name, TemporaryFile())
-			tempFile.write(data)
+			if isinstance(data, str):
+				tempFile.write(data.encode("utf-8")) # strings are unicode
+			else:
+				tempFile.write(data)
 		# Otherwise just act normally
 		else:
-			super(MutableZipFile, self).writestr(zinfo_or_arcname, data,
+			super().writestr(zinfo_or_arcname, data,
 			compress_type=compress_type, compresslevel=compresslevel)
 
-	def write(self, filename, arcname=None, compress_type=None, compresslevel=None):
+	def write(self, filename: Union[str, PathLike[str]],
+	arcname: Optional[Union[str, PathLike[str]]]=None, compress_type: Optional[int]=None,
+	compresslevel: Optional[int]=None):
 		arcname = arcname or filename
 		# If the file exits, and needs to be overridden,
 		# mark the entry, and create a temp-file for it
@@ -53,7 +68,7 @@ class MutableZipFile(ZipFile):
 				copyfileobj(source, tempFile)
 		# Behave normally
 		else:
-			super(MutableZipFile, self).write(filename, arcname=arcname,
+			super().write(filename, arcname=arcname,
 			compress_type=compress_type, compresslevel=compresslevel)
 
 	def __enter__(self):
@@ -61,10 +76,11 @@ class MutableZipFile(ZipFile):
 		self._allowUpdates = True
 		return self
 
-	def __exit__(self, exc_type, exc_val, exc_tb):
+	def __exit__(self, exc_type: Optional[Type[BaseException]],
+	exc_val: Optional[BaseException], exc_tb: Optional[TracebackType]):
 		# Call base to close zip
 		try:
-			super(MutableZipFile, self).__exit__(exc_type, exc_val, exc_tb)
+			super().__exit__(exc_type, exc_val, exc_tb)
 			if len(self._replace) > 0:
 				self._rebuildZip()
 		finally:
@@ -78,7 +94,7 @@ class MutableZipFile(ZipFile):
 			if hasattr(tempFile, 'close'):
 				tempFile.close()
 
-	def removeFile(self, path):
+	def removeFile(self, path: Union[str, PathLike[str]]):
 		""" flag a file with a delete marker """
 		self._replace[path] = self.DeleteMarker()
 
@@ -86,10 +102,10 @@ class MutableZipFile(ZipFile):
 		tempdir = mkdtemp()
 		try:
 			tempZipPath = join(tempdir, 'new.zip')
-			with ZipFile(self.filename, 'r') as zipRead:
+			with ZipFile(self.file, 'r') as zipRead:
 				# Create new zip with assigned properties
 				with ZipFile(tempZipPath, 'w', compression=self.compression,
-				allowZip64=self._allowZip64) as zipWrite:
+				allowZip64=self.allowZip64) as zipWrite:
 					for item in zipRead.infolist():
 						# Check if the file should be replaced / or deleted
 						replacement = self._replace.get(item.filename, None)
@@ -109,6 +125,9 @@ class MutableZipFile(ZipFile):
 							data = zipRead.read(item.filename)
 						zipWrite.writestr(item, data)
 			# Override the archive with the updated one
-			move(tempZipPath, self.filename)
+			if isinstance(self.file, str):
+				move(tempZipPath, self.file)
+			else:
+				move(tempZipPath, self.file.name)
 		finally:
 			rmtree(tempdir)
