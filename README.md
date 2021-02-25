@@ -1,12 +1,12 @@
 [![GitHub top language](https://img.shields.io/github/languages/top/FHPythonUtils/MutableZip.svg?style=for-the-badge)](../../)
-[![Codacy grade](https://img.shields.io/codacy/grade/522bca9f9e1f49da96cb9cf6b9083d7a.svg?style=for-the-badge)](https://www.codacy.com/gh/FHPythonUtils/MutableZip)
 [![Repository size](https://img.shields.io/github/repo-size/FHPythonUtils/MutableZip.svg?style=for-the-badge)](../../)
 [![Issues](https://img.shields.io/github/issues/FHPythonUtils/MutableZip.svg?style=for-the-badge)](../../issues)
 [![License](https://img.shields.io/github/license/FHPythonUtils/MutableZip.svg?style=for-the-badge)](/LICENSE.md)
 [![Commit activity](https://img.shields.io/github/commit-activity/m/FHPythonUtils/MutableZip.svg?style=for-the-badge)](../../commits/master)
 [![Last commit](https://img.shields.io/github/last-commit/FHPythonUtils/MutableZip.svg?style=for-the-badge)](../../commits/master)
-[![PyPI Downloads](https://img.shields.io/pypi/dm/mutablezip.svg?style=for-the-badge)](https://pypi.org/project/mutablezip/)
-[![PyPI Version](https://img.shields.io/pypi/v/mutablezip.svg?style=for-the-badge)](https://pypi.org/project/mutablezip/)
+[![PyPI Downloads](https://img.shields.io/pypi/dm/mutablezip.svg?style=for-the-badge)](https://pypistats.org/packages/mutablezip)
+[![PyPI Total Downloads](https://img.shields.io/badge/dynamic/json?style=for-the-badge&label=total%20downloads&query=%24.total_downloads&url=https%3A%2F%2Fapi.pepy.tech%2Fapi%2Fprojects%2Fmutablezip)](https://pepy.tech/project/mutablezip)
+[![PyPI Version](https://img.shields.io/pypi/v/mutablezip.svg?style=for-the-badge)](https://pypi.org/project/mutablezip)
 
 <!-- omit in TOC -->
 # MutableZip
@@ -16,7 +16,7 @@
 Overwrite and remove elements from a zip file
 
 - [Example](#example)
-- [Docs](#docs)
+- [Documentation](#documentation)
 - [Install With PIP](#install-with-pip)
 - [Language information](#language-information)
 	- [Built for](#built-for)
@@ -28,8 +28,7 @@ Overwrite and remove elements from a zip file
 - [How to run](#how-to-run)
 	- [With VSCode](#with-vscode)
 	- [From the Terminal](#from-the-terminal)
-- [How to update, build and publish](#how-to-update-build-and-publish)
-- [Download](#download-1)
+- [Download Project](#download-project)
 	- [Clone](#clone)
 		- [Using The Command Line](#using-the-command-line)
 		- [Using GitHub Desktop](#using-github-desktop)
@@ -40,6 +39,8 @@ Overwrite and remove elements from a zip file
 	- [Code of Conduct](#code-of-conduct)
 	- [Contributing](#contributing)
 	- [Security](#security)
+	- [Support](#support)
+	- [Rationale](#rationale)
 
 
 ## Example
@@ -67,17 +68,15 @@ with MutableZipFile("mutable.zip", "a", compression=ZIP_DEFLATED) as zipFile:
 	zipFile.writestr("foo.txt", b"\n".join(lines))
 ```
 
-## Docs
-See the [Docs](/DOCS.md) for more information.
+## Documentation
+See the [Docs](/DOCS/) for more information.
 
 ## Install With PIP
-
 ```python
 pip install mutablezip
 ```
 
 Head to https://pypi.org/project/mutablezip/ for more info
-
 
 ## Language information
 ### Built for
@@ -110,36 +109,7 @@ Interpreter > Python 3.9)
 ./[file].py
 ```
 
-## How to update, build and publish
-
-1. Ensure you have installed the following dependencies
-	Linux
-	```bash
-	wget dephell.org/install | python3.9
-	wget https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3.9
-	```
-	Windows
-	```powershell
-	(wget dephell.org/install -UseBasicParsing).Content | python
-	(wget https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py -UseBasicParsing).Content | python
-	```
-2. Use poetry for the heavy lifting and dephell to generate requirements
-	```bash
-	poetry update
-	dephell deps convert
-	```
-3. Build/ Publish
-	```bash
-	poetry build
-	poetry publish
-	```
-	or
-	```bash
-	poetry publish --build
-	```
-
-
-## Download
+## Download Project
 ### Clone
 #### Using The Command Line
 1. Press the Clone or download button in the top right
@@ -178,14 +148,31 @@ Copyright (c) FredHappyface
 See the [Changelog](/CHANGELOG.md) for more information.
 
 ### Code of Conduct
-In the interest of fostering an open and welcoming environment, we
-as contributors and maintainers pledge to make participation in our
-project and our community a harassment-free experience for everyone.
-Please see the
-[Code of Conduct](https://github.com/FHPythonUtils/.github/blob/master/CODE_OF_CONDUCT.md) for more information.
+Online communities include people from many backgrounds. The *Project*
+contributors are committed to providing a friendly, safe and welcoming
+environment for all. Please see the
+[Code of Conduct](https://github.com/FHPythonUtils/.github/blob/master/CODE_OF_CONDUCT.md)
+ for more information.
 
 ### Contributing
-Contributions are welcome, please see the [Contributing Guidelines](https://github.com/FHPythonUtils/.github/blob/master/CONTRIBUTING.md) for more information.
+Contributions are welcome, please see the
+[Contributing Guidelines](https://github.com/FHPythonUtils/.github/blob/master/CONTRIBUTING.md)
+for more information.
 
 ### Security
-Thank you for improving the security of the project, please see the [Security Policy](https://github.com/FHPythonUtils/.github/blob/master/SECURITY.md) for more information.
+Thank you for improving the security of the project, please see the
+[Security Policy](https://github.com/FHPythonUtils/.github/blob/master/SECURITY.md)
+for more information.
+
+### Support
+Thank you for using this project, I hope it is of use to you. Please be aware that
+those involved with the project often do so for fun along with other commitments
+(such as work, family, etc). Please see the
+[Support Policy](https://github.com/FHPythonUtils/.github/blob/master/SUPPORT.md)
+for more information.
+
+### Rationale
+The rationale acts as a guide to various processes regarding projects such as
+the versioning scheme and the programming styles used. Please see the
+[Rationale](https://github.com/FHPythonUtils/.github/blob/master/RATIONALE.md)
+for more information.
