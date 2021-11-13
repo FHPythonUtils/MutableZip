@@ -1,7 +1,8 @@
 #!/usr/bin/env python3.9
 
 """ tests """
-from zipfile import ZipFile, ZIP_DEFLATED
+from zipfile import ZIP_DEFLATED, ZipFile
+
 from mutablezip import MutableZipFile
 
 with MutableZipFile("mutable.zip", "a", compression=ZIP_DEFLATED) as zipFile:
