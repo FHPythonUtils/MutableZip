@@ -1,6 +1,8 @@
 #!/usr/bin/env python3.9
 
 """ tests """
+from __future__ import annotations
+
 from zipfile import ZIP_DEFLATED, ZipFile
 
 from mutablezip import MutableZipFile
