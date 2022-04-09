@@ -1,10 +1,10 @@
-# mutablezip
+# Mutablezip
 
-> Auto-generated documentation for [mutablezip](../../mutablezip/__init__.py) module.
+> Auto-generated documentation for [mutablezip](../../../mutablezip/__init__.py) module.
 
 mutable zip file
 
-- [Mutablezip](../README.md#mutablezip-index) / [Modules](../README.md#mutablezip-modules) / mutablezip
+- [Mutablezip](../README.md#mutablezip-index) / [Modules](../MODULES.md#mutablezip-modules) / Mutablezip
     - [MutableZipFile](#mutablezipfile)
         - [MutableZipFile().removeFile](#mutablezipfileremovefile)
         - [MutableZipFile().write](#mutablezipfilewrite)
@@ -12,13 +12,13 @@ mutable zip file
 
 ## MutableZipFile
 
-[[find in source code]](../../mutablezip/__init__.py#L13)
+[[find in source code]](../../../mutablezip/__init__.py#L13)
 
 ```python
 class MutableZipFile(ZipFile):
     def __init__(
         file: str | IO[bytes],
-        mode: Literal[('r', 'w', 'x', 'a')] = 'r',
+        mode: Literal['r', 'w', 'x', 'a'] = 'r',
         compression: int = ZIP_STORED,
         allowZip64: bool = False,
     ):
@@ -31,7 +31,7 @@ exiting one with the updates
 
 ### MutableZipFile().removeFile
 
-[[find in source code]](../../mutablezip/__init__.py#L117)
+[[find in source code]](../../../mutablezip/__init__.py#L117)
 
 ```python
 def removeFile(path: str | PathLike[str]):
@@ -41,7 +41,7 @@ flag a file with a delete marker
 
 ### MutableZipFile().write
 
-[[find in source code]](../../mutablezip/__init__.py#L69)
+[[find in source code]](../../../mutablezip/__init__.py#L69)
 
 ```python
 def write(
@@ -54,7 +54,7 @@ def write(
 
 ### MutableZipFile().writestr
 
-[[find in source code]](../../mutablezip/__init__.py#L43)
+[[find in source code]](../../../mutablezip/__init__.py#L43)
 
 ```python
 def writestr(
