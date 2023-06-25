@@ -1,8 +1,7 @@
-# Mutablezip Modules
+# Mutablezip Index
 
-> Auto-generated documentation modules index.
+> Auto-generated documentation index.
 
-Full list of [Mutablezip](README.md#mutablezip-index) project modules.
+A full list of `Mutablezip` project modules.
 
-- [Mutablezip Index](README.md#mutablezip-index)
 - [Mutablezip](mutablezip/index.md#mutablezip)
