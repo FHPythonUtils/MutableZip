@@ -30,8 +30,7 @@ class MutableZipFile(ZipFile):
         mode: Literal["r", "w", "x", "a"] = "r",
         compression: int = ZIP_STORED,
         allowZip64: bool = False,
-    ):
-        ...
+    ): ...
 ```
 
 ### MutableZipFile().removeFile
@@ -43,8 +42,7 @@ flag a file with a delete marker
 #### Signature
 
 ```python
-def removeFile(self, path: str | PathLike[str]):
-    ...
+def removeFile(self, path: str | PathLike[str]): ...
 ```
 
 ### MutableZipFile().write
@@ -60,8 +58,7 @@ def write(
     arcname: str | PathLike[str] | None = None,
     compress_type: int | None = None,
     compresslevel: int | None = None,
-):
-    ...
+): ...
 ```
 
 ### MutableZipFile().writestr
@@ -77,6 +74,5 @@ def writestr(
     data: bytes | str,
     compress_type: int | None = None,
     compresslevel: int | None = None,
-):
-    ...
+): ...
 ```
