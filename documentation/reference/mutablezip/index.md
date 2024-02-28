@@ -35,7 +35,7 @@ class MutableZipFile(ZipFile):
 
 ### MutableZipFile()._closeAllTempFiles
 
-[Show source in __init__.py:111](../../../mutablezip/__init__.py#L111)
+[Show source in __init__.py:121](../../../mutablezip/__init__.py#L121)
 
 close all temporary files
 
@@ -47,7 +47,7 @@ def _closeAllTempFiles(self): ...
 
 ### MutableZipFile().removeFile
 
-[Show source in __init__.py:117](../../../mutablezip/__init__.py#L117)
+[Show source in __init__.py:127](../../../mutablezip/__init__.py#L127)
 
 flag a file with a delete marker
 
@@ -59,7 +59,7 @@ def removeFile(self, path: str | PathLike[str]): ...
 
 ### MutableZipFile().write
 
-[Show source in __init__.py:69](../../../mutablezip/__init__.py#L69)
+[Show source in __init__.py:74](../../../mutablezip/__init__.py#L74)
 
 #### Signature
 
@@ -75,7 +75,7 @@ def write(
 
 ### MutableZipFile().writestr
 
-[Show source in __init__.py:43](../../../mutablezip/__init__.py#L43)
+[Show source in __init__.py:45](../../../mutablezip/__init__.py#L45)
 
 #### Signature
 
