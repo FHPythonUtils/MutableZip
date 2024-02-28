@@ -1,12 +1,12 @@
 # Mutablezip
 
-[Mutablezip Index](../README.md#mutablezip-index) /
-Mutablezip
+[Mutablezip Index](../README.md#mutablezip-index) / Mutablezip
 
 > Auto-generated documentation for [mutablezip](../../../mutablezip/__init__.py) module.
 
 - [Mutablezip](#mutablezip)
   - [MutableZipFile](#mutablezipfile)
+    - [MutableZipFile()._closeAllTempFiles](#mutablezipfile()_closealltempfiles)
     - [MutableZipFile().removeFile](#mutablezipfile()removefile)
     - [MutableZipFile().write](#mutablezipfile()write)
     - [MutableZipFile().writestr](#mutablezipfile()writestr)
@@ -31,6 +31,18 @@ class MutableZipFile(ZipFile):
         compression: int = ZIP_STORED,
         allowZip64: bool = False,
     ): ...
+```
+
+### MutableZipFile()._closeAllTempFiles
+
+[Show source in __init__.py:111](../../../mutablezip/__init__.py#L111)
+
+close all temporary files
+
+#### Signature
+
+```python
+def _closeAllTempFiles(self): ...
 ```
 
 ### MutableZipFile().removeFile

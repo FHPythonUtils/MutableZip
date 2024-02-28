@@ -14,7 +14,9 @@ from mutablezip import MutableZipFile
 
 
 def test_MutableZipFile():
-	with MutableZipFile(f"{THISDIR}/data/mutable.zip", "a", compression=ZIP_DEFLATED) as zipFile:
+	with MutableZipFile(
+		f"{THISDIR}/data/mutable.zip", "a", compression=ZIP_DEFLATED
+	) as zipFile:
 		with zipFile.open("foo.txt", "r") as file:
 			lines = [line.strip() for line in file.readlines()]
 		lines.append(b"new line")
@@ -24,7 +26,9 @@ def test_MutableZipFile():
 
 
 def test_ZipFile():
-	with ZipFile(f"{THISDIR}/data/immutable.zip", "a", compression=ZIP_DEFLATED) as zipFile:
+	with ZipFile(
+		f"{THISDIR}/data/immutable.zip", "a", compression=ZIP_DEFLATED
+	) as zipFile:
 		with zipFile.open("foo.txt", "r") as file:
 			lines = [line.strip() for line in file.readlines()]
 		lines.append(b"new line")

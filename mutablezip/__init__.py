@@ -28,7 +28,9 @@ class MutableZipFile(ZipFile):
 		compression: int = ZIP_STORED,
 		allowZip64: bool = False,
 	):
-		super().__init__(file, mode=mode, compression=compression, allowZip64=allowZip64)
+		super().__init__(
+			file, mode=mode, compression=compression, allowZip64=allowZip64
+		)
 		# track file to override in zip
 		self._replace = {}
 		# Whether the with statement was called
@@ -63,7 +65,10 @@ class MutableZipFile(ZipFile):
 		# Otherwise just act normally
 		else:
 			super().writestr(
-				zinfo_or_arcname, data, compress_type=compress_type, compresslevel=compresslevel
+				zinfo_or_arcname,
+				data,
+				compress_type=compress_type,
+				compresslevel=compresslevel,
 			)
 
 	def write(
@@ -78,13 +83,18 @@ class MutableZipFile(ZipFile):
 		# mark the entry, and create a temp-file for it
 		# we allow this only if the with statement is used
 		if self._allowUpdates and arcname in self.namelist():
-			tempFile = self._replace[arcname] = self._replace.get(arcname, TemporaryFile())
+			tempFile = self._replace[arcname] = self._replace.get(
+				arcname, TemporaryFile()
+			)
 			with open(filename, "rb") as source:
 				copyfileobj(source, tempFile)
 		# Behave normally
 		else:
 			super().write(
-				filename, arcname=arcname, compress_type=compress_type, compresslevel=compresslevel
+				filename,
+				arcname=arcname,
+				compress_type=compress_type,
+				compresslevel=compresslevel,
 			)
 
 	def __enter__(self):
@@ -125,7 +135,10 @@ class MutableZipFile(ZipFile):
 			with ZipFile(self.file, "r") as zipRead:
 				# Create new zip with assigned properties
 				with ZipFile(
-					tempZipPath, "w", compression=self.compression, allowZip64=self.allowZip64
+					tempZipPath,
+					"w",
+					compression=self.compression,
+					allowZip64=self.allowZip64,
 				) as zipWrite:
 					for item in zipRead.infolist():
 						# Check if the file should be replaced / or deleted
