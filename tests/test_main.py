@@ -14,7 +14,7 @@ sys.path.insert(0, str(THISDIR.parent))
 from mutablezip import MutableZipFile
 
 
-def test_MutableZipFile():
+def test_MutableZipFile() -> None:
 	with MutableZipFile(f"{THISDIR}/data/mutable.zip", "a", compression=ZIP_DEFLATED) as zipFile:
 		with zipFile.open("foo.txt", "r") as file:
 			lines = [line.strip() for line in file.readlines()]
@@ -24,7 +24,7 @@ def test_MutableZipFile():
 		assert len(zipFile.namelist()) == 1
 
 
-def test_ZipFile():
+def test_ZipFile() -> None:
 	with ZipFile(f"{THISDIR}/data/immutable.zip", "a", compression=ZIP_DEFLATED) as zipFile:
 		with zipFile.open("foo.txt", "r") as file:
 			lines = [line.strip() for line in file.readlines()]

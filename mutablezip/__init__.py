@@ -1,4 +1,4 @@
-"""mutable zip file"""
+"""mutable zip file."""
 
 from __future__ import annotations
 
@@ -16,11 +16,11 @@ class MutableZipFile(ZipFile):
 	Add delete (via remove_file) and update (via writestr and write methods)
 	To enable update features use MutableZipFile with the 'with statement',
 	Upon __exit__ (if updates were applied) a new zip file will override the
-	exiting one with the updates
+	exiting one with the updates.
 	"""
 
 	class DeleteMarker:
-		"""delete marker"""
+		"""delete marker."""
 
 	def __init__(
 		self,
@@ -28,7 +28,7 @@ class MutableZipFile(ZipFile):
 		mode: Literal["r", "w", "x", "a"] = "r",
 		compression: int = ZIP_STORED,
 		allowZip64: bool = False,
-	):
+	) -> None:
 		super().__init__(file, mode=mode, compression=compression, allowZip64=allowZip64)
 		# track file to override in zip
 		self._replace = {}
@@ -47,7 +47,7 @@ class MutableZipFile(ZipFile):
 		data: bytes | str,
 		compress_type: int | None = None,
 		compresslevel: int | None = None,
-	):
+	) -> None:
 		if isinstance(zinfo_or_arcname, ZipInfo):
 			name = zinfo_or_arcname.filename
 		else:
@@ -76,7 +76,7 @@ class MutableZipFile(ZipFile):
 		arcname: str | PathLike[str] | None = None,
 		compress_type: int | None = None,
 		compresslevel: int | None = None,
-	):
+	) -> None:
 		arcname = arcname or filename
 		# If the file exits, and needs to be overridden,
 		# mark the entry, and create a temp-file for it
@@ -115,17 +115,17 @@ class MutableZipFile(ZipFile):
 			self._closeAllTempFiles()
 			self._allowUpdates = False
 
-	def _closeAllTempFiles(self):
-		"""Close all temporary files"""
+	def _closeAllTempFiles(self) -> None:
+		"""Close all temporary files."""
 		for tempFile in self._replace.values():
 			if hasattr(tempFile, "close"):
 				tempFile.close()
 
-	def removeFile(self, path: str | PathLike[str]):
-		"""Flag a file with a delete marker"""
+	def removeFile(self, path: str | PathLike[str]) -> None:
+		"""Flag a file with a delete marker."""
 		self._replace[path] = self.DeleteMarker()
 
-	def _rebuildZip(self):
+	def _rebuildZip(self) -> None:
 		tempdir = mkdtemp()
 		try:
 			tempZipPath = join(tempdir, "new.zip")
