@@ -13,7 +13,7 @@
 
 ## MutableZipFile
 
-[Show source in __init__.py:13](../../../mutablezip/__init__.py#L13)
+[Show source in __init__.py:14](../../../mutablezip/__init__.py#L14)
 
 Add delete (via remove_file) and update (via writestr and write methods)
 To enable update features use MutableZipFile with the 'with statement',
@@ -35,9 +35,9 @@ class MutableZipFile(ZipFile):
 
 ### MutableZipFile()._closeAllTempFiles
 
-[Show source in __init__.py:121](../../../mutablezip/__init__.py#L121)
+[Show source in __init__.py:118](../../../mutablezip/__init__.py#L118)
 
-close all temporary files
+Close all temporary files
 
 #### Signature
 
@@ -47,9 +47,9 @@ def _closeAllTempFiles(self): ...
 
 ### MutableZipFile().removeFile
 
-[Show source in __init__.py:127](../../../mutablezip/__init__.py#L127)
+[Show source in __init__.py:124](../../../mutablezip/__init__.py#L124)
 
-flag a file with a delete marker
+Flag a file with a delete marker
 
 #### Signature
 
@@ -59,7 +59,7 @@ def removeFile(self, path: str | PathLike[str]): ...
 
 ### MutableZipFile().write
 
-[Show source in __init__.py:74](../../../mutablezip/__init__.py#L74)
+[Show source in __init__.py:73](../../../mutablezip/__init__.py#L73)
 
 #### Signature
 
@@ -75,7 +75,7 @@ def write(
 
 ### MutableZipFile().writestr
 
-[Show source in __init__.py:45](../../../mutablezip/__init__.py#L45)
+[Show source in __init__.py:44](../../../mutablezip/__init__.py#L44)
 
 #### Signature
 

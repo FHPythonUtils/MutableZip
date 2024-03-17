@@ -1,4 +1,5 @@
-""" mutable zip file """
+"""mutable zip file"""
+
 from __future__ import annotations
 
 from os import PathLike
@@ -28,9 +29,7 @@ class MutableZipFile(ZipFile):
 		compression: int = ZIP_STORED,
 		allowZip64: bool = False,
 	):
-		super().__init__(
-			file, mode=mode, compression=compression, allowZip64=allowZip64
-		)
+		super().__init__(file, mode=mode, compression=compression, allowZip64=allowZip64)
 		# track file to override in zip
 		self._replace = {}
 		# Whether the with statement was called
@@ -83,9 +82,7 @@ class MutableZipFile(ZipFile):
 		# mark the entry, and create a temp-file for it
 		# we allow this only if the with statement is used
 		if self._allowUpdates and arcname in self.namelist():
-			tempFile = self._replace[arcname] = self._replace.get(
-				arcname, TemporaryFile()
-			)
+			tempFile = self._replace[arcname] = self._replace.get(arcname, TemporaryFile())
 			with open(filename, "rb") as source:
 				copyfileobj(source, tempFile)
 		# Behave normally
@@ -119,13 +116,13 @@ class MutableZipFile(ZipFile):
 			self._allowUpdates = False
 
 	def _closeAllTempFiles(self):
-		"""close all temporary files"""
+		"""Close all temporary files"""
 		for tempFile in self._replace.values():
 			if hasattr(tempFile, "close"):
 				tempFile.close()
 
 	def removeFile(self, path: str | PathLike[str]):
-		"""flag a file with a delete marker"""
+		"""Flag a file with a delete marker"""
 		self._replace[path] = self.DeleteMarker()
 
 	def _rebuildZip(self):
