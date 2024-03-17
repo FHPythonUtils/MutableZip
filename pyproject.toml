@@ -24,9 +24,10 @@ python = "^3.8"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.1.1"
-pylint = "^3.1.0"
 handsdown = "^2.1.0"
 coverage = "^7.4.4"
+ruff = "^0.3.3"
+pyright = "^1.1.354"
 
 [build-system]
 requires = ["poetry-core"]

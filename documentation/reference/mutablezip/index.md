@@ -18,7 +18,7 @@
 Add delete (via remove_file) and update (via writestr and write methods)
 To enable update features use MutableZipFile with the 'with statement',
 Upon __exit__ (if updates were applied) a new zip file will override the
-exiting one with the updates
+exiting one with the updates.
 
 #### Signature
 
@@ -30,31 +30,31 @@ class MutableZipFile(ZipFile):
         mode: Literal["r", "w", "x", "a"] = "r",
         compression: int = ZIP_STORED,
         allowZip64: bool = False,
-    ): ...
+    ) -> None: ...
 ```
 
 ### MutableZipFile()._closeAllTempFiles
 
 [Show source in __init__.py:118](../../../mutablezip/__init__.py#L118)
 
-Close all temporary files
+Close all temporary files.
 
 #### Signature
 
 ```python
-def _closeAllTempFiles(self): ...
+def _closeAllTempFiles(self) -> None: ...
 ```
 
 ### MutableZipFile().removeFile
 
 [Show source in __init__.py:124](../../../mutablezip/__init__.py#L124)
 
-Flag a file with a delete marker
+Flag a file with a delete marker.
 
 #### Signature
 
 ```python
-def removeFile(self, path: str | PathLike[str]): ...
+def removeFile(self, path: str | PathLike[str]) -> None: ...
 ```
 
 ### MutableZipFile().write
@@ -70,7 +70,7 @@ def write(
     arcname: str | PathLike[str] | None = None,
     compress_type: int | None = None,
     compresslevel: int | None = None,
-): ...
+) -> None: ...
 ```
 
 ### MutableZipFile().writestr
@@ -86,5 +86,5 @@ def writestr(
     data: bytes | str,
     compress_type: int | None = None,
     compresslevel: int | None = None,
-): ...
+) -> None: ...
 ```
