@@ -1,37 +1,36 @@
-[tool.poetry]
+[project]
 name = "mutablezip"
-version = "2021"
-license = "mit"
+version = "2025"
 description = "Overwrite and remove elements from a zip"
-authors = ["FredHappyface"]
-classifiers = [
-	"Development Status :: 5 - Production/Stable",
-	"Intended Audience :: Developers",
-	"Intended Audience :: Education",
-	"Natural Language :: English",
-	"Operating System :: OS Independent",
-	"Programming Language :: Python :: Implementation :: CPython",
-	"Topic :: Software Development :: Libraries :: Python Modules",
-	"Topic :: Utilities"
-]
-homepage = "https://github.com/FHPythonUtils/MutableZip"
-repository = "https://github.com/FHPythonUtils/MutableZip"
-documentation = "https://github.com/FHPythonUtils/MutableZip/blob/master/README.md"
+authors = [{ name = "FredHappyface" }]
+requires-python = "~=3.8"
 readme = "README.md"
+license = "mit"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Utilities",
+]
 
-[tool.poetry.dependencies]
-python = "^3.8"
+[project.urls]
+Homepage = "https://github.com/FHPythonUtils/MutableZip"
+Repository = "https://github.com/FHPythonUtils/MutableZip"
+Documentation = "https://github.com/FHPythonUtils/MutableZip/blob/master/README.md"
 
-[tool.poetry.group.dev.dependencies]
-pytest = "^8.1.1"
-handsdown = "^2.1.0"
-coverage = "^7.4.4"
-ruff = "^0.3.3"
-pyright = "^1.1.354"
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[dependency-groups]
+dev = [
+    "pytest>=8.1.1,<9",
+    "handsdown>=2.1.0,<3",
+    "coverage>=7.4.4,<8",
+    "ruff>=0.3.3,<0.4",
+    "pyright>=1.1.354,<2",
+    "safety>=3.3.0",
+]
 
 [tool.ruff]
 line-length = 100
@@ -83,3 +82,7 @@ env_list =
 deps = pytest
 commands = pytest tests
 """
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

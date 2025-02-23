@@ -1,17 +1,13 @@
-#!/usr/bin/env python3.9
-
 """tests"""
 
 from __future__ import annotations
 
-import sys
 from pathlib import Path
 from zipfile import ZIP_DEFLATED, ZipFile
 
-THISDIR = Path(__file__).resolve().parent
-sys.path.insert(0, str(THISDIR.parent))
-
 from mutablezip import MutableZipFile
+
+THISDIR = Path(__file__).resolve().parent
 
 
 def test_MutableZipFile() -> None:

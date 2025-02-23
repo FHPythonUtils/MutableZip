@@ -1,6 +1,6 @@
 !test
-README.rst
-requirements_optional.txt
+uv.lock
+profile.*
 
 # DepHell stuff
 poetry.lock
