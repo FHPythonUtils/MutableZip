@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from io import BytesIO
 from pathlib import Path
 from zipfile import ZIP_DEFLATED, ZipFile
 
@@ -28,3 +29,18 @@ def test_ZipFile() -> None:
 		zipFile.writestr("foo.txt", b"\n".join(lines))
 	with ZipFile(f"{THISDIR}/data/immutable.zip", "r") as zipFile:
 		assert len(zipFile.namelist()) > 1
+
+
+def test_inmemory() -> None:
+
+	in_memory_zip = BytesIO()
+	with MutableZipFile(in_memory_zip, "w", compression=ZIP_DEFLATED) as file:
+		lines = [b"first line"]
+		file.writestr("foo.txt", b"\n".join(lines))
+
+	with MutableZipFile(in_memory_zip, "a", compression=ZIP_DEFLATED) as file:
+		lines = [b"new line"]
+		file.writestr("foo.txt", b"\n".join(lines))
+
+	with open(f"{THISDIR}/data/inmemory.zip", "wb") as file:
+		file.write(in_memory_zip.getvalue())

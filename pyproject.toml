@@ -16,6 +16,9 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Topic :: Utilities",
 ]
+dependencies = [
+    "typing-extensions>=4.12.2",
+]
 
 [project.urls]
 Homepage = "https://github.com/FHPythonUtils/MutableZip"
@@ -24,11 +27,11 @@ Documentation = "https://github.com/FHPythonUtils/MutableZip/blob/master/README.
 
 [dependency-groups]
 dev = [
-    "pytest>=8.1.1,<9",
-    "handsdown>=2.1.0,<3",
-    "coverage>=7.4.4,<8",
-    "ruff>=0.3.3,<0.4",
-    "pyright>=1.1.354,<2",
+    "coverage>=7.6.1",
+    "handsdown>=2.1.0",
+    "pyright>=1.1.394",
+    "pytest>=8.3.4",
+    "ruff>=0.9.7",
     "safety>=3.3.0",
 ]
 
@@ -40,7 +43,6 @@ target-version = "py38"
 [tool.ruff.lint]
 select = ["ALL"]
 ignore = [
-	"ANN101",  # type annotation for self in method
 	"COM812",  # enforce trailing comma
 	"D2",  # pydocstyle formatting
 	"ISC001",
